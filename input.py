@@ -7,7 +7,18 @@ import os
 import webbrowser
 
 # --------- 1. Capture Webcam Image ---------
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0, cv2.CAP_AVFOUNDATION)
+ret, frame = cap.read()
+if ret:
+    cv2.imwrite('input_image.jpg', frame)
+    print("Webcam image saved.")
+else:
+    print("Error capturing image from webcam. Exiting.")
+    exit()
+cap.release()
+
+# If AVFOUNDATION doesn't work, try device index 1 or higher
+cap = cv2.VideoCapture(1, cv2.CAP_AVFOUNDATION)
 ret, frame = cap.read()
 if ret:
     cv2.imwrite('input_image.jpg', frame)
