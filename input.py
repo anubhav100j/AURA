@@ -5,7 +5,7 @@ import os
 
 # For Gemini API multimodal prompt
 import google.generativeai as genai
-from gemini_client import model  # Ensure this matches your installed Gemini SDK
+from gemini_client import model, api_key  # Ensure this matches your installed Gemini SDK
 
 # For LangChain and Agent
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -73,15 +73,16 @@ except Exception as e:
     exit()
 
 # --------- 4. (Optional) LangChain Agent Setup ---------
-llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
+llm = ChatGoogleGenerativeAI(model="gemini-pro", google_api_key=api_key)
 ddg_search = DuckDuckGoSearchResults()
 
 agent = initialize_agent(
     tools=[ddg_search],
     llm=llm,
-    agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION
+    agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
+    verbose=True
 )
 
 # You can use the agent for text-based queries if needed
-# output = agent.invoke("What's the latest news in AI?")
-# print(output.get('output'))
+output = agent.invoke("What's the latest news in AI?")
+print(output.get('output'))
