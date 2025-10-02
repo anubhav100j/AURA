@@ -1,0 +1,5 @@
+pvporcupine
+speechrecognition
+pyaudio
+google-generativeai
+python-dotenv
