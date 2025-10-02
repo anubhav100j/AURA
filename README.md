@@ -48,21 +48,26 @@ Install the required Python packages using the `requirements.txt` file:
 pip install -r aura_agent/requirements.txt
 ```
 
-### 3. Get API Keys
+### 3. Get API Keys and Credentials
 
-This project requires two API keys:
+This project requires API keys for Picovoice and Google, as well as OAuth 2.0 credentials for accessing Google services like Gmail.
 
 -   **Porcupine Access Key:** For wake word detection. You can get a free key from the [Picovoice Console](https://console.picovoice.ai/).
--   **Google API Key:** For speech-to-text and command interpretation with Gemini. You can create one from the [Google AI Studio](https://aistudio.google.com/app/apikey).
+-   **Google API Key (for Gemini):** For command interpretation with Gemini. You can create one from the [Google AI Studio](https://aistudio.google.com/app/apikey).
+-   **Google OAuth 2.0 Credentials (for Gmail):** To allow AURA to access your Google account, you need to create OAuth 2.0 Client ID credentials.
+    1.  Go to the [Google Cloud Console](https://console.cloud.google.com/).
+    2.  Create a new project or select an existing one.
+    3.  Enable the **Gmail API** for your project.
+    4.  Go to "Credentials" in the APIs & Services section.
+    5.  Click "Create Credentials" -> "OAuth client ID".
+    6.  Select "Desktop app" as the application type.
+    7.  After creation, click the "Download JSON" button for the client ID.
+    8.  **Rename the downloaded file to `credentials.json` and place it inside the `aura_agent` directory.** This file is essential for the authentication process.
 
 ### 4. Configure Environment Variables
 
 1.  Navigate to the `aura_agent` directory.
-2.  Create a `.env` file by copying the example:
-    ```bash
-    cp .env.example .env
-    ```
-    *(If `.env.example` does not exist, create a new file named `.env`)*
+2.  Create a `.env` file. You can copy the example if one exists, or create a new file.
 3.  Open the `.env` file and add your API keys:
     ```
     # aura_agent/.env
@@ -77,6 +82,8 @@ To run the AURA agent, execute the `agent.py` script from the root directory of 
 ```bash
 python aura_agent/agent.py
 ```
+
+**First-Time Setup:** The first time you run the agent, a browser window will open, asking you to log in to your Google account and grant AURA permission to access the services it needs (e.g., Gmail). After you approve, a `token.json` file will be created in the `aura_agent` directory. This file stores your authorization, so you won't have to log in every time.
 
 The script will initialize and you will see the message: "Listening for wake word: 'Hey AURA'...".
 
