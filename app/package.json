@@ -1,7 +1,12 @@
 {
   "name": "aura-frontend",
   "version": "1.0.0",
+  "description": "AURA 💡 - AI Assistant. A multimodal AI system combining voice and vision inputs with an agentic AI backend to perform real-world tasks hands-free. Features voice recognition, computer vision, Google Gemini Pro Vision, LangChain integration, agentic AI, code generation, Git automation, and a modern web interface.",
   "main": "main.js",
+  "engines": {
+    "node": ">=20.19.0",
+    "npm": ">=10.8.2"
+  },
   "scripts": {
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,7 +21,6 @@
     "url": "https://github.com/anubhav100j/AURA/issues"
   },
   "homepage": "https://github.com/anubhav100j/AURA#readme",
-  "description": "",
   "devDependencies": {
     "electron": "^38.2.0"
   }
