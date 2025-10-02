@@ -1,9 +1,0 @@
-google-generativeai
-langchain-google-genai
-python-dotenv
-opencv-python
-SpeechRecognition
-Pillow
-GitPython
-PyAudio
-numpy<2.0
